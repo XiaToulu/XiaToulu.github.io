@@ -33,6 +33,13 @@ github_username:  jekyll
 theme: minima
 plugins:
   - jekyll-feed
+  
+markdown: kramdown
+kramdown:
+  toc_levels: 1..6
+  auto_ids: true
+  hard_wrap: false
+  input: GFM
 
 # Exclude from processing.
 # The following items will not be processed, by default.
