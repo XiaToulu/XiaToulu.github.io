@@ -18,7 +18,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 
-title: Your awesome title
+title: XiaToulu的Blog站
 email: your-email@example.com
 description: >- # this means to ignore newlines until "baseurl:"
   Write an awesome description for your new site here. You can edit this
@@ -29,17 +29,39 @@ url: "" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: jekyllrb
 github_username:  jekyll
 
+markdown: kramdown
+
 # Build settings
 theme: minima
 plugins:
   - jekyll-feed
-  
-markdown: kramdown
-kramdown:
-  toc_levels: 1..6
-  auto_ids: true
-  hard_wrap: false
-  input: GFM
+
+# 导航
+header_pages:
+  - index.md
+
+# 自定义变量
+sidebar_toc: true
+toc_levels: 4
+
+# 集合
+collections:
+  docs:
+    output: true
+    permalink: /:collection/:path/
+
+# 默认值
+defaults:
+  - scope:
+      path: ""
+      type: "docs"
+    values:
+      layout: "default"
+      toc: true
+  - scope:
+      path: ""
+    values:
+      layout: "default"
 
 # Exclude from processing.
 # The following items will not be processed, by default.

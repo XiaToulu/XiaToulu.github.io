@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% if page.title %}{{ page.title }} - {% endif %}{{ site.title }}</title>
+    <link rel="stylesheet" href="{{ '/assets/css/style.css' | relative_url }}">
+</head>
+<body>
+    <!-- 移动端菜单切换按钮 -->
+    <button class="menu-toggle" id="menuToggle">☰ 目录</button>
+
+    <!-- 侧边栏目录 -->
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <h2 class="sidebar-title">
+                <a href="{{ '/' | relative_url }}">{{ site.title }}</a>
+            </h2>
+            <button class="close-sidebar" id="closeSidebar">×</button>
+        </div>
+        
+        <!-- 主导航 -->
+        <nav class="main-nav">
+            <ul>
+                <li><a href="{{ '/' | relative_url }}">首页</a></li>
+                <li><a href="{{ '/docs/' | relative_url }}">文档</a></li>
+            </ul>
+        </nav>
+        
+        <!-- 文档目录 -->
+        {% if page.toc %}
+        <nav class="toc-nav">
+            <h3>本文目录</h3>
+            {% include toc.html html=content %}
+        </nav>
+        {% endif %}
+        
+        <!-- 文档集目录 -->
+        {% if page.collection == 'docs' %}
+        <nav class="docs-nav">
+            <h3>文档目录</h3>
+            {% include docs_toc.html %}
+        </nav>
+        {% endif %}
+    </aside>
+
+    <!-- 主内容区域 -->
+    <main class="main-content">
+        <header class="article-header">
+            <h1 class="article-title">{{ page.title }}</h1>
+            {% if page.date %}
+            <div class="article-meta">
+                最后更新: {{ page.date | date: "%Y年%m月%d日" }}
+            </div>
+            {% endif %}
+        </header>
+
+        <article class="article-content">
+            {{ content }}
+        </article>
+        
+        <footer class="article-footer">
+            <div class="pagination">
+                {% if page.previous.url %}
+                <a href="{{ page.previous.url | relative_url }}" class="prev">← {{ page.previous.title }}</a>
+                {% endif %}
+                {% if page.next.url %}
+                <a href="{{ page.next.url | relative_url }}" class="next">{{ page.next.title }} →</a>
+                {% endif %}
+            </div>
+        </footer>
+    </main>
+
+    <script src="{{ '/assets/js/script.js' | relative_url }}"></script>
+</body>
+</html>
